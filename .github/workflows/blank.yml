@@ -2,6 +2,9 @@ name: Compilar APK Vilafranca Manager
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   construir:
