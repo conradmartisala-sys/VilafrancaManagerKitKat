@@ -40,5 +40,4 @@ jobs:
         with:
           name: VilafrancaManagerKitKat-APK
           path: app/build/outputs/apk/debug/app-debug.apk
-          name: VilafrancaManagerKitKat-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+        
