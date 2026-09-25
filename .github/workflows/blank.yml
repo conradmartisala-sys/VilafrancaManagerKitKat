@@ -42,21 +42,18 @@ jobs:
           find proyecto -type f | sort
           echo "=== FIN DEL CONTENIDO ==="
 
-            - name: Preparar Gradle
+      - name: Preparar Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '5.6.4'
 
       - name: Compilar APK
         run: |
-          GRADLEW=$(find proyecto -name gradlew -type f | head -1)
-          PROYECTO=$(dirname "$GRADLEW")
-          echo "Proyecto: $PROYECTO"
-          cd "$PROYECTO"
-          ./gradlew assembleDebug
+          cd proyecto/VilafrancaKitKatApp
+          gradle assembleDebug
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
           name: VilafrancaManagerKitKat-APK
-          path: proyecto/**/app/build/outputs/apk/debug/app-debug.apk
+          path: proyecto/VilafrancaKitKatApp/app/build/outputs/apk/debug/app-debug.apk
