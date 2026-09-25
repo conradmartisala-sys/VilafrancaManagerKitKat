@@ -38,9 +38,12 @@ jobs:
           echo "Buscando gradlew..."
           find proyecto -name gradlew -type f
 
-      - name: Dar permisos a Gradle
+            - name: Dar permisos a Gradle
         run: |
-          chmod +x $(find proyecto -name gradlew -type f | head -1)
+          GRADLEW=$(find proyecto -name gradlew -type f | head -1)
+          echo "Gradle encontrado en: $GRADLEW"
+          test -n "$GRADLEW"
+          chmod +x "$GRADLEW"
 
       - name: Compilar APK
         run: |
