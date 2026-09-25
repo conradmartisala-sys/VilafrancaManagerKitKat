@@ -31,22 +31,25 @@ jobs:
 
       - name: Aceptar licencias Android
         run: yes | sdkmanager --licenses || true
+
       - name: Extraer proyecto Android
         run: |
           unzip -q VilafrancaManagerKitKat-AndroidProject.zip -d proyecto
           echo "Buscando gradlew..."
           find proyecto -name gradlew -type f
-            - name: Dar permisos a Gradle
+
+      - name: Dar permisos a Gradle
         run: |
           chmod +x $(find proyecto -name gradlew -type f | head -1)
-            - name: Compilar APK
+
+      - name: Compilar APK
         run: |
           GRADLEW=$(find proyecto -name gradlew -type f | head -1)
           PROYECTO=$(dirname "$GRADLEW")
           cd "$PROYECTO"
           ./gradlew assembleDebug
 
-            - name: Guardar APK
+      - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
           name: VilafrancaManagerKitKat-APK
